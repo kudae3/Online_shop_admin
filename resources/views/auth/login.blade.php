@@ -1,48 +1,62 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/183280f8d9.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    @vite('resources/css/app.css')
+</head>
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
-            </div>
-        @endsession
+<body>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
+    <div class="m-10 flex justify-center items-center">
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+        <div class=" sm:w-1/2 lg:w-[400px] bg-slate-100 rounded-lg shadow-md p-10 space-y-12 md:space-y-20">
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+            <h2 class="font-caveat font-bold text-2xl md:text-5xl text-center text-slate-500" >Login to Shauzk!</h2>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+            <form action="{{route('login')}}" method="POST" class="space-y-7">
 
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+                @csrf
+
+                <div class="space-y-3">
+                    <label class="font-medium text-slate-600 block" for="">Email</label>
+                    <input class=" font-semibold text-slate-600 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="email" name="email" id="" >
+                    @error('email')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+                <div class="space-y-3">
+                    <label class="font-medium text-slate-600 block" for="">Password</label>
+                    <input class=" font-semibold text-slate-600 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="password" name="password" id="" >
+                    @error('password')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+                <button type="submit" class="px-3 py-2 text-slate-50 font-semibold bg-orange-400 rounded-md hover:scale-x-110 hover:bg-orange-500 duration-700">Login</button>
+
+            </form>
+
+            <p class="font-medium text-slate-500 text-sm">New user?
+                <a href="{{route('registerPage')}}" class="hover:text-orange-600 duration-300">Register an account</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

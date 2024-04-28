@@ -1,17 +1,23 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware(PermissionMiddleware::class)->group(function(){
+    Route::redirect('/', 'loginPage');
+    Route::get('/loginPage', [AuthController::class, 'login'])->name('loginPage');
+    Route::get('/registerPage', [AuthController::class, 'register'])->name('registerPage');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function(){
+        return redirect ('/category');
+    });
+
+    Route::get('/category', [CategoryController::class, 'categoryView'])->name('categoryView');
+
 });

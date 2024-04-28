@@ -1,60 +1,87 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/183280f8d9.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    @vite('resources/css/app.css')
+</head>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+<body>
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
+    <div class="mx-10 my-7 lg:my-5 flex justify-center items-center">
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+        <div class=" sm:w-1/2 lg:w-[410px] bg-slate-100 rounded-lg shadow-md p-10 space-y-12 md:space-y-20">
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+            <h2 class="font-caveat font-bold text-2xl md:text-5xl text-center text-slate-500" >Welcome to Shauzk!</h2>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+            <form method="POST" action=" {{route('register')}} "  class="space-y-7">
 
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
+                @csrf
+
+                <div>
+                    <label class="font-medium text-slate-600 block" for="">Username</label>
+                    <input class=" font-semibold text-slate-500 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="text" name="name" id="" >
+                    @error('name')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
                 </div>
-            @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+                <div>
+                    <label class="font-medium text-slate-600 block" for="">Email</label>
+                    <input class=" font-semibold text-slate-500 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="email" name="email" id="" >
+                    @error('email')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
 
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+                <div>
+                    <label class="font-medium text-slate-600 block" for="">Phone</label>
+                    <input class=" font-semibold text-slate-500 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="text" name="phone" id="" >
+                    @error('phone')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="font-medium text-slate-600 block" for="">Password</label>
+                    <input class=" font-semibold text-slate-500 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="password" name="password" id="" >
+                    @error('password')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="font-medium text-slate-600 block" for="">Re-type Password</label>
+                    <input class=" font-semibold text-slate-500 rounded-xl border-orange-300 duration-300 bg-slate-100 w-full"  type="password" name="confirm_password" id="" >
+                    @error('confirm_password')
+                        <span class="text-red-600 text-sm"> {{ $message }} </span>
+                    @enderror
+                </div>
+
+                <button type="submit" class="px-3 py-2 text-slate-50 font-semibold bg-orange-400 rounded-md hover:scale-x-110 hover:bg-orange-500 duration-700">Signup</button>
+
+            </form>
+
+
+            <p class="font-medium text-slate-500 text-sm">Already have an account?
+                <a href="{{route('loginPage')}}" class="hover:text-orange-600 duration-300">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -15,6 +15,9 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                'dancing-srcipt': ["Dancing Script", "cursive"],
+                'caveat': ["Caveat", "cursive"],
+                'comfortaa': ["Comfortaa", "sans-serif"]
             },
         },
     },
