@@ -15,9 +15,13 @@ Route::middleware(PermissionMiddleware::class)->group(function(){
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', function(){
-        return redirect ('/category');
+        return redirect ('/category/list');
     });
 
-    Route::get('/category', [CategoryController::class, 'categoryView'])->name('categoryView');
+    Route::prefix('category')->group(function(){
+        Route::get('/list', [CategoryController::class, 'categoryView'])->name('category#list');
+        Route::get('/create', [CategoryController::class, 'createCategory'])->name('category#create');
+    });
+
 
 });
