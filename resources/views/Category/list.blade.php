@@ -93,7 +93,7 @@
                                                 <a href="http://">
                                                     <i class="fa-solid fa-pencil hover:text-blue-600 duration-300"></i>
                                                 </a>
-                                                <a href="http://">
+                                                <a href="{{route('category#delete', $category->id)}}">
                                                     <i class="fa-solid fa-trash hover:text-red-600 duration-300"></i>
                                                 </a>
                                             </div>

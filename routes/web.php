@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('category')->group(function(){
         Route::get('/list', [CategoryController::class, 'categoryView'])->name('category#list');
         Route::get('/create', [CategoryController::class, 'createCategory'])->name('category#create');
+        Route::post('/create', [CategoryController::class, 'createBtn'])->name('category#createBtn');
+        Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category#delete');
     });
 
 
