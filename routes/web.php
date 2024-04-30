@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category#delete');
         Route::get('/edit/{id}', [CategoryController::class, 'editCategory'])->name('category#edit');
         Route::post('/update/{id}', [CategoryController::class, 'updateBtn'])->name('category#updateBtn');
+    });
+
+    Route::prefix('product')->group(function(){
+        Route::get('/list', [ProductController::class, 'productView'])->name('product#list');
     });
 
 
