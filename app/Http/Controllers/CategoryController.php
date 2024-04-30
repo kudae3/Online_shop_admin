@@ -41,11 +41,25 @@ class CategoryController extends Controller
         return redirect()->route('category#list');
     }
 
+    //edit Category View
+    public function editCategory($id){
+        $category = Category::where('id', $id)->first();
+        return view('Category.edit', compact('category'));
+    }
+
+    //update Category
+    public function updateBtn(Request $req, $id){
+        $this->validationRule($req);
+        $updateCategory = $this->getData($req);
+        Category::where('id', $id)->update($updateCategory);
+        return redirect()->route('category#list');
+    }
+
     //validation
     private function validationRule($req){
 
         Validator::make($req->all(), [
-            'name' => 'required|unique:categories,name,except,id',
+            'name' => 'required|unique:categories,name,'.$req->id,
             'description' => 'required|max:200',
         ])->validate();
 

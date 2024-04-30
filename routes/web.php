@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', [CategoryController::class, 'createCategory'])->name('category#create');
         Route::post('/create', [CategoryController::class, 'createBtn'])->name('category#createBtn');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category#delete');
+        Route::get('/edit/{id}', [CategoryController::class, 'editCategory'])->name('category#edit');
+        Route::post('/update/{id}', [CategoryController::class, 'updateBtn'])->name('category#updateBtn');
     });
 
 
