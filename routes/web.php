@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/list', [ProductController::class, 'productView'])->name('product#list');
         Route::get('/list/search', [ProductController::class, 'productSearch'])->name('product#search');
         Route::get('/list/filter', [ProductController::class, 'productFilter'])->name('product#filter');
+        Route::get('/create', [ProductController::class, 'createProduct'])->name('product#create');
+        Route::post('/create', [ProductController::class, 'createBtn'])->name('product#createBtn');
+        Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('product#delete');
     });
 
 

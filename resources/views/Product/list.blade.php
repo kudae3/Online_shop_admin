@@ -33,9 +33,9 @@
 
                     {{-- Create Product --}}
                     <div>
-                        <a href="#">
+                        <a href="{{route('product#create')}}">
                             <button class="bg-blue-400 px-3 py-2 rounded-lg text-white hover:bg-blue-500 duration-200 ">New
-                                Category</button>
+                                Product</button>
                         </a>
                     </div>
 
@@ -111,7 +111,7 @@
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-full h-full rounded-full" src="{{ $product->photo }}"
+                                                    <img class="w-full h-full rounded-full" src="{{ asset('storage/'.$product->photo) }}"
                                                         alt="" />
                                                 </div>
                                                 <div class="ml-3">
@@ -146,7 +146,7 @@
 
                                         {{-- View --}}
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                                            <p class="text-gray-900 whitespace-no-wrap">{{ $product->price }}</p>
+                                            <p class="text-gray-900 whitespace-no-wrap">{{ $product->view }}</p>
                                         </td>
 
                                         {{-- Actions --}}
@@ -156,7 +156,7 @@
                                                 <a href="#">
                                                     <i class="fa-solid fa-pencil hover:text-blue-600 duration-300"></i>
                                                 </a>
-                                                <a href="#">
+                                                <a href="{{route('product#delete', $product->id)}}">
                                                     <i class="fa-solid fa-trash hover:text-red-600 duration-300"></i>
                                                 </a>
                                             </div>
