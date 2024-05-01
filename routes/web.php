@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('product')->group(function(){
         Route::get('/list', [ProductController::class, 'productView'])->name('product#list');
+        Route::get('/list/search', [ProductController::class, 'productSearch'])->name('product#search');
+        Route::get('/list/filter', [ProductController::class, 'productFilter'])->name('product#filter');
     });
 
 
