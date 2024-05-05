@@ -153,7 +153,7 @@
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                                             <p class="text-gray-900 whitespace-no-wrap">
                                             <div class="flex space-x-3 cursor-pointer">
-                                                <a href="#">
+                                                <a href="{{route('product#edit', $product->id)}}">
                                                     <i class="fa-solid fa-pencil hover:text-blue-600 duration-300"></i>
                                                 </a>
                                                 <a href="{{route('product#delete', $product->id)}}">

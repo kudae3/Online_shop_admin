@@ -68,7 +68,7 @@ class ProductController extends Controller
 
     //create Btn
     public function createBtn(Request $req){
-        $this->validationRule($req);
+        $this->productValidation($req, 'create');
         $newProduct = $this->getData($req);
 
         $imageName = uniqid().'_'.$req->file('image')->getClientOriginalName();
@@ -91,14 +91,57 @@ class ProductController extends Controller
         return redirect()->route('product#list');
     }
 
+    //edit Page View
+    public function editProduct($id){
+        $product = Product::where('id', $id)->first();
+        $categories = Category::get();
+        return view('Product.edit', compact('product', 'categories'));
+
+    }
+
+    //update Btn
+    public function updateBtn(Request $req, $id){
+        $this->productValidation($req, 'update');
+        $updateProduct = $this->getData($req);
+
+        if($req->hasFile('image')){
+
+            //delete
+            $currnetProduct = Product::where('id', $id)->first();
+            $currentImage = $currnetProduct->photo;
+            Storage::delete('public/'.$currentImage);
+
+            //update
+            $imageName = uniqid().'_'.$req->file('image')->getClientOriginalName();
+            $req->file('image')->storeAs('public', $imageName);
+            $updateProduct['photo'] = $imageName;
+        }
+
+        Product::where('id', $id)->update($updateProduct);
+        return redirect()->route('product#list');
+
+    }
+
     //Validation
-    private function validationRule($req){
-        Validator::make($req->all(), [
+    private function productValidation($req, $action){
+
+        $validationRules = [
             'image' => 'required|mimes:png,jpg,jpeg',
             'name' => 'required|unique:products,name,'.$req->id,
             'price' => 'required|numeric',
             'description' => 'required|max:200',
-        ] )->validate();
+        ];
+
+        if($action == 'create'){
+            $validationRules['image'] = 'required|mimes:png,jpg,jpeg';
+        }
+        else{
+            $validationRules['image'] = 'mimes:png,jpg,jpeg';
+        }
+
+
+
+        Validator::make($req->all(), $validationRules )->validate();
     }
 
     //get Data
