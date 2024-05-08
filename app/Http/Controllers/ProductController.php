@@ -122,6 +122,15 @@ class ProductController extends Controller
 
     }
 
+    //view detail
+    public function viewProduct($id){
+        $product = Product::select('products.*', 'categories.name as category_name')
+        ->leftJoin('categories', 'products.category_id', 'categories.id')
+        ->where('products.id', $id)->first();
+
+        return view('Product.detail', compact('product'));
+    }
+
     //Validation
     private function productValidation($req, $action){
 

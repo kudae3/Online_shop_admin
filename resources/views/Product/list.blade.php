@@ -115,8 +115,10 @@
                                                         alt="" />
                                                 </div>
                                                 <div class="ml-3">
-                                                    <p class="text-gray-900 whitespace-no-wrap">
-                                                        {{ $product->name }}
+                                                    <p class="text-blue-700 whitespace-no-wrap hover:underline">
+                                                        <a href="{{route('product#detail', $product->id)}}">
+                                                            {{ $product->name }}
+                                                        </a>
                                                     </p>
                                                 </div>
                                             </div>

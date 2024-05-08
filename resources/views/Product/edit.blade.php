@@ -11,7 +11,7 @@
     <main class="p-10 md:max-w-lg lg:max-w-xl mx-auto">
 
         <div class="py-3">
-            <h2 class="text-slate-600 font-semibold text-lg">Edit Product</h2>
+            <h2 class="text-slate-600 font-semibold text-lg">Edit {{$product->name}} </h2>
         </div>
 
         <form action="{{route('product#updateBtn', $product->id)}}" method="post" class="space-y-7" enctype="multipart/form-data">
