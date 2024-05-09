@@ -20,7 +20,7 @@
 
                 {{-- image --}}
                 <div>
-                    <img class="rounded-lg shadow-md sm:min-w-60 " src="{{asset('storage/'.$product->photo)}}" alt="">
+                    <img class="rounded-lg shadow-md sm:size-60 " src="{{asset('storage/'.$product->photo)}}" alt="">
                 </div>
 
                 {{-- price and view --}}
@@ -34,6 +34,7 @@
                         @endif
                     </h2>
                 </div>
+
             </div>
 
             <div class="space-y-5">
