@@ -25,11 +25,17 @@ class UserController extends Controller
         return view('User.list', compact('users'));
     }
 
-    //switch tos admin
+    //switch to admin
     public function switchAdmin(Request $req){
         User::where('id', $req->id)->update([
             'role' => 'admin'
         ]);
+        return redirect()->route('user#list');
+    }
+
+    //delete User
+    public function deleteUser(Request $req){
+        User::where('id', $req->id)->delete();
         return redirect()->route('user#list');
     }
 }

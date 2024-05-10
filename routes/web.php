@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -44,6 +45,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('user')->group(function(){
         Route::get('/list', [UserController::class, 'userView'])->name('user#list');
         Route::post('/switch/admin', [UserController::class, 'switchAdmin'])->name('user#switchAdmin');
+        Route::post('/delete', [UserController::class, 'deleteUser'])->name('user#delete');
+    });
+
+    Route::prefix('admin')->group(function(){
+        Route::get('/list', [AdminController::class, 'adminView'])->name('admin#list');
+        Route::post('/switch/user', [AdminController::class, 'switchUser'])->name('admin#switchUser');
     });
 
 
