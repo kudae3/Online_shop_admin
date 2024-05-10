@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [ProductController::class, 'editProduct'])->name('product#edit');
         Route::post('/update/{id}', [ProductController::class, 'updateBtn'])->name('product#updateBtn');
         Route::get('/detail/{id}', [ProductController::class, 'viewProduct'])->name('product#detail');
+    });
+
+    Route::prefix('user')->group(function(){
+        Route::get('/list', [UserController::class, 'userView'])->name('user#list');
+        Route::post('/switch/admin', [UserController::class, 'switchAdmin'])->name('user#switchAdmin');
     });
 
 
