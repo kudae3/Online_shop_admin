@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -57,6 +58,10 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('order')->group(function(){
         Route::get('/list', [OrderController::class, 'orderView'])->name('order#list');
         Route::post('/changeStatus', [OrderController::class, 'changeStatus'])->name('order#changeStatus');
+    });
+
+    Route::prefix('favourite')->group(function(){
+        Route::get('/list', [FavouriteController::class, 'favView'])->name('fav#list');
     });
 
 
