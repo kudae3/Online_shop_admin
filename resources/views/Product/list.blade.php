@@ -20,7 +20,7 @@
                         <select name="category_id" class="px-3 py-1 w-full bg-slate-100 rounded">
                             <option value="">All</option>
                             @foreach ($categories as $category)
-                                <option value={{ $category->id }}>{{ $category->name }}</option>
+                                <option @if (request('category_id') == $category->id) selected @endif value={{ $category->id }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
 

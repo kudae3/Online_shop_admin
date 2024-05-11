@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\PermissionMiddleware;
@@ -51,6 +52,11 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function(){
         Route::get('/list', [AdminController::class, 'adminView'])->name('admin#list');
         Route::post('/switch/user', [AdminController::class, 'switchUser'])->name('admin#switchUser');
+    });
+
+    Route::prefix('order')->group(function(){
+        Route::get('/list', [OrderController::class, 'orderView'])->name('order#list');
+        Route::post('/changeStatus', [OrderController::class, 'changeStatus'])->name('order#changeStatus');
     });
 
 
