@@ -65,16 +65,16 @@
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
 
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
+                    <img src="{{asset('storage/'.Auth::user()->photo)}}">
                 </button>
 
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
 
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16 space-y-5">
 
-                    <button href="#" class="block w-full duration-300 px-4 py-2 account-link hover:text-white">Account</button>
-
-                    <button href="#" class="block w-full duration-300 px-4 py-2 account-link hover:text-white">Support</button>
+                    <a href="{{route('account#profile')}}">
+                        <button class="block w-full duration-300 px-4 py-2 account-link hover:text-white">Account</button>
+                    </a>
 
                     <form action="{{route('logout')}}" method="post">
                         @csrf
@@ -122,7 +122,7 @@
                     <i class="fas fa-tablet-alt mr-3"></i>
                     Admins
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="{{route('account#profile')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-user mr-3"></i>
                     My Account
                 </a>

@@ -24,15 +24,15 @@ class DatabaseSeeder extends Seeder
         Order::factory(10)->create();
         Favourite::factory(5)->create();
 
-        User::create([
-            'name' => 'Thomas',
-            'email' =>'thomas@gmail.com',
-            'phone' => '+959751025121',
-            'gender' => 'male',
-            'address' => 'Yangon',
-            'role' => 'admin',
-            'password' => Hash::make('thomas123'),
-        ]);
+        // User::create([
+        //     'name' => 'Thomas',
+        //     'email' =>'thomas@gmail.com',
+        //     'phone' => '+959751025121',
+        //     'gender' => 'male',
+        //     'address' => 'Yangon',
+        //     'role' => 'admin',
+        //     'password' => Hash::make('thomas123'),
+        // ]);
 
     }
 }

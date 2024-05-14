@@ -7,7 +7,7 @@
 
     <main class="w-full flex-grow p-6 space-y-8 ">
 
-        <div class="flex justify-between">
+        <div class="space-y-5 sm:space-y-0 sm:flex sm:justify-between">
 
             {{-- Searching --}}
             <form action="" method="get">
@@ -21,11 +21,11 @@
             </form>
 
             {{-- filter by status --}}
-            <form action="" method="get" class="flex justify-center items-center">
+            <form action="" method="get" class="flex items-center">
 
                 @csrf
 
-                <select name="status" class="px-3 py-1 w-full bg-slate-100 rounded">
+                <select name="status" class="px-3 py-1 bg-slate-100 rounded">
                     <option value="">All</option>
                     <option @if ( request('status') == '0') selected @endif value="0">Pending</option>
                     <option @if ( request('status') == '1') selected @endif  value="1">Accepted</option>

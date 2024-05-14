@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -64,5 +65,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/list', [FavouriteController::class, 'favView'])->name('fav#list');
     });
 
+    Route::prefix('account')->group(function(){
+        Route::get('/profile', [AccountController::class, 'ProfileView'])->name('account#profile');
+        Route::get('/edit', [AccountController::class, 'EditBtn'])->name('account#editBtn');
+        Route::post('/save/edit', [AccountController::class, 'SaveBtn'])->name('account#saveBtn');
+        Route::get('change/password', [AccountController::class, 'changePassword'])->name('account#changePassword');
+        Route::post('/password/confirm', [AccountController::class, 'confirmBtn'])->name('account#confirmPassBtn');
+    });
 
 });
