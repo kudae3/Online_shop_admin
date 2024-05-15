@@ -9,24 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PermissionMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
 
         if(!empty(Auth::user())){
 
 
-            if(url()->current() == route('loginPage') || url()->current() == route('registerPage')){
-                return redirect ('/dashboard');
+            if(url()->current() == route('loginPage')){
+                return back();
             }
 
         }
-
-        return $next($request);
 
         return $next($request);
     }

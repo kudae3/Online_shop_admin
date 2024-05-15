@@ -1,28 +1,24 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthMiddleware;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavouriteController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\PermissionMiddleware;
-use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(PermissionMiddleware::class)->group(function(){
     Route::redirect('/', 'loginPage');
     Route::get('/loginPage', [AuthController::class, 'login'])->name('loginPage');
-    Route::get('/registerPage', [AuthController::class, 'register'])->name('registerPage');
 });
 
 Route::middleware(['auth'])->group(function () {
-
-    Route::get('/dashboard', function(){
-        return redirect ('/category/list');
-    });
 
     Route::prefix('category')->group(function(){
         Route::get('/list', [CategoryController::class, 'categoryView'])->name('category#list');

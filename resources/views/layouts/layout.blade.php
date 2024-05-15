@@ -65,7 +65,18 @@
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
 
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="{{asset('storage/'.Auth::user()->photo)}}">
+
+                    @if (Auth::user()->photo)
+                        <img src="{{asset('storage/'.Auth::user()->photo)}}">
+                    @else
+                        @if (Auth::user()->gender == 'female')
+                            <img src="{{asset('gender/Female.jpeg')}}">
+                        @else
+                            <img src="{{asset('gender/Male.png')}}">
+                        @endif
+                    @endif
+
+
                 </button>
 
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>

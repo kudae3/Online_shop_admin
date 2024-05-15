@@ -15,12 +15,10 @@
                 @if (Auth::user()->photo)
                     <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('storage/'.Auth::user()->photo)}}" alt="">
                 @else
-                    @if (Auth::user()->gender == 'male')
-                        <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('gender/Male.png')}}" alt="">
-                    @elseif (Auth::user()->gender == 'female')
-                        <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('gender/Female.png')}}" alt="">
+                    @if (Auth::user()->gender == 'female')
+                        <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('gender/Female.jpeg')}}">
                     @else
-                        <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('gender/Male.png')}}" alt="">
+                        <img class="size-32 md:size-40 rounded-lg shadow-sm" src="{{asset('gender/Male.png')}}">
                     @endif
                 @endif
             </div>

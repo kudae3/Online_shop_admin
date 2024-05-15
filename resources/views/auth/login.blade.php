@@ -49,9 +49,6 @@
 
             </form>
 
-            <p class="font-medium text-slate-500 text-sm">New user?
-                <a href="{{route('registerPage')}}" class="hover:text-orange-600 duration-300">Register an account</a>
-            </p>
 
         </div>
 

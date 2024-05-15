@@ -76,8 +76,15 @@
                                         <div class="flex items-center">
 
                                             <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-full h-full rounded-full" src="{{ asset('storage/'.$admin->photo) }}"
-                                                    alt="" />
+                                                @if ($admin->photo)
+                                                    <img class="w-full h-full rounded-full" src="{{ asset('storage/'.$admin->photo) }}">
+                                                @else
+                                                    @if ($admin->gender == 'female')
+                                                        <img class="w-full h-full rounded-full" src="{{ asset('gender/Female.jpeg') }}">
+                                                    @else
+                                                        <img class="w-full h-full rounded-full" src="{{ asset('gender/Male.png') }}">
+                                                    @endif
+                                                @endif
                                             </div>
 
                                             <div class="ml-3">
