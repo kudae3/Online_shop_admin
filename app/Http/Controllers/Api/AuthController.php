@@ -17,6 +17,11 @@ class AuthController extends Controller
 
         try {
 
+            Validator::make($req->all(), [
+                'email' => 'required',
+                'password' => 'required'
+            ])->validate();
+
             $user = User::where('email', $req->email)->first();
 
             if($user){
@@ -27,21 +32,20 @@ class AuthController extends Controller
                         'token' => $user->createToken(time())->plainTextToken
                     ]);
                 }
-
                 else{
                     return response()->json([
-                        'user' => null,
-                        'token' => null
-                    ]);
+                        'message' => 'Incorrect Password'
+                    ], 401);
                 }
-
             }
+
             else{
                 return response()->json([
-                    'user' => null,
-                    'token' => null
-                ]);
+                    'message' => 'your credentials could not be verified!'
+                ], 401);
             }
+
+
 
         } catch (Exception $e) {
 
