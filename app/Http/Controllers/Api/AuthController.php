@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,8 +46,6 @@ class AuthController extends Controller
                 ], 401);
             }
 
-
-
         } catch (Exception $e) {
 
             return response()->json([
@@ -82,6 +81,26 @@ class AuthController extends Controller
         }
     }
 
+    //get User data with Token
+    public function getUser(Request $req) {
+
+        try {
+
+            $user = Auth::user();
+
+            return response()->json([
+                'user' => $user
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 401);
+        }
+
+    }
+
     // register validation
     private function Validation($req){
         Validator::make($req->all(), [
@@ -94,7 +113,7 @@ class AuthController extends Controller
         ])->validate();
     }
 
-    //get data
+    //get input data
     private function getData($req){
         return [
             'name' => $req->name,
