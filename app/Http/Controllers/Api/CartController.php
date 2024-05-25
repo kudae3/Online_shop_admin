@@ -22,6 +22,10 @@ class CartController extends Controller
 
             Cart::create($data);
 
+            return response()->json([
+                'message' => 'successfully added to cart'
+            ], 200);
+
         } catch (Exception $e) {
 
             return response()->json([
