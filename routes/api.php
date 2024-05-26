@@ -23,5 +23,7 @@ Route::get('/detail/product', [ProductController::class, 'productDetail']);
 
 //cart
 Route::post('/add/cart', [CartController::class, 'addtoCart']);
+Route::get('/view/cart', [CartController::class, 'viewCart']);
+Route::post('/delete/cart', [CartController::class, 'deleteCart']);
 
 
