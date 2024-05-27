@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,8 @@ Route::get('/detail/product', [ProductController::class, 'productDetail']);
 Route::post('/add/cart', [CartController::class, 'addtoCart']);
 Route::get('/view/cart', [CartController::class, 'viewCart']);
 Route::post('/delete/cart', [CartController::class, 'deleteCart']);
+
+//order
+Route::post('/add/order', [OrderController::class, 'addOrder']);
 
 
