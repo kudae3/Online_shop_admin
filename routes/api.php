@@ -29,5 +29,6 @@ Route::post('/delete/cart', [CartController::class, 'deleteCart']);
 
 //order
 Route::post('/add/order', [OrderController::class, 'addOrder']);
+Route::get('/view/order', [OrderController::class, 'orderList']);
 
 

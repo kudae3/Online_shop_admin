@@ -54,4 +54,24 @@ class OrderController extends Controller
         }
 
     }
+
+    // order list
+    public function orderList(Request $req){
+
+        try {
+            $orders = Order::where('user_id', $req->user_id)->get();
+
+            return response()->json([
+                'orders' => $orders
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+
+        }
+
+    }
 }
