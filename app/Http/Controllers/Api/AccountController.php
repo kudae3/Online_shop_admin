@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
@@ -68,6 +69,43 @@ class AccountController extends Controller
                 'message' => $e->getMessage()
             ], 500);
 
+        }
+
+    }
+
+    //change password
+    public function changePassword(Request $req){
+
+        try {
+
+            $user = User::find($req->user_id);
+
+            if(Hash::check($req->currentPass, $user->password)){
+
+                $newPass = Hash::make($req->newPass);
+
+                $user->update([
+                    'password' => $newPass
+                ]);
+
+                return response()->json([
+                    'message' => 'Successfully changed your password'
+                ], 200);
+
+            }
+
+            else{
+                return response()->json([
+                    'message' => 'Incorrect Password'
+                ], 401);
+            }
+
+
+
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
         }
 
     }

@@ -16,6 +16,7 @@ Route::get('/get/user', [AuthController::class, 'getUser'])->middleware('auth:sa
 
 //Account
 Route::post('/account/edit', [AccountController::class, 'editAccount']);
+Route::post('/change/password', [AccountController::class, 'changePassword']);
 
 //category
 Route::get('/get/categories', [CategoryController::class, 'categoryList']);
