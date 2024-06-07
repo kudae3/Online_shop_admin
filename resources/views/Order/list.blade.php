@@ -106,14 +106,16 @@
                                     </td>
 
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap text-center">
-                                            {{$order->order_code}}
+                                        <p class="whitespace-no-wrap text-center text-blue-600">
+                                            <a href="{{route('order#detail', $order->order_code)}}">
+                                                {{$order->order_code}}
+                                            </a>
                                         </p>
                                     </td>
 
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap text-center">
-                                            {{$order->total_price}}
+                                            $ {{$order->total_price}}
                                         </p>
                                     </td>
 

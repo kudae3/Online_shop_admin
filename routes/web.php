@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('order')->group(function(){
         Route::get('/list', [OrderController::class, 'orderView'])->name('order#list');
         Route::post('/changeStatus', [OrderController::class, 'changeStatus'])->name('order#changeStatus');
+        Route::get('/detail/{code}', [OrderController::class, 'orderDetail'])->name('order#detail');
     });
 
     Route::prefix('favourite')->group(function(){
