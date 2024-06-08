@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
@@ -19,6 +20,12 @@ class AccountController extends Controller
             $user = User::find($req->user_id);
 
             try{
+
+                Validator::make($req->all(), [
+                    'name' => 'required|max:15',
+                    'email' => 'required|email|unique:users,email,'.$req->user_id,
+                    'phone' => 'required|unique:users,phone,'.$req->user_id,
+                ])->validate();
 
                 $data = [
                     'name' => $req->name,

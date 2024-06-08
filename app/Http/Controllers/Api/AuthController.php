@@ -60,7 +60,11 @@ class AuthController extends Controller
     public function userRegister(Request $req){
         try {
 
-            $this->Validation($req);
+            Validator::make($req->all(), [
+                'email' => 'required|unique:users,email|email',
+                'phone' => 'required|unique:users,phone'
+            ])->validate();
+
             $data = $this->getData($req);
 
             User::create($data);
@@ -99,18 +103,6 @@ class AuthController extends Controller
             ], 401);
         }
 
-    }
-
-    // register validation
-    private function Validation($req){
-        Validator::make($req->all(), [
-            'name' => 'required|max:15',
-            'email' => 'required|unique:users,email|email',
-            'phone' => 'required|min:10|max:15|unique:users,phone',
-            'address' => 'required|max:50',
-            'password' => 'required|min:8|max:15',
-            'confirmPassword' => 'required|same:password'
-        ])->validate();
     }
 
     //get input data
