@@ -67,6 +67,10 @@ class AuthController extends Controller
 
             $data = $this->getData($req);
 
+            if($req->gender){
+                $data['gender'] = $req->gender;
+            }
+
             User::create($data);
 
             $user = User::where('email', $req->email)->first();
@@ -112,7 +116,7 @@ class AuthController extends Controller
             'email' => $req->email,
             'phone' => $req->phone,
             'address' => $req->address,
-            'password' => $req->password
+            'password' => $req->password,
         ];
     }
 }

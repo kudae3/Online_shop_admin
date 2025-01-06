@@ -14,8 +14,7 @@ use App\Http\Middleware\PermissionMiddleware;
 
 
 Route::middleware(PermissionMiddleware::class)->group(function(){
-    Route::redirect('/', 'loginPage');
-    Route::get('/loginPage', [AuthController::class, 'login'])->name('loginPage');
+    Route::get('/', [AuthController::class, 'login'])->name('loginPage');
 });
 
 Route::middleware(['auth'])->group(function () {
