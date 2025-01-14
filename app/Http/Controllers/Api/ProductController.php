@@ -12,7 +12,7 @@ class ProductController extends Controller
     //product list
     public function productList(){
         try {
-            $products = Product::search(request('search'))->get();
+            $products = Product::search(request('search'))->paginate(6);
             return response()->json([
                 'products' => $products
             ], 200);
